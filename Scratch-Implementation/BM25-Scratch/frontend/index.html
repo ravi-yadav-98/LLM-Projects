@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BM25 arXiv Search</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>arXiv Paper Search</h1>
+  <p class="subtitle">Search through research paper titles using BM25 algorithm</p>
+  
+  <div class="search-box">
+    <input 
+      id="query" 
+      type="text" 
+      placeholder="Enter search terms (e.g., machine learning, neural networks...)" 
+      onkeypress="if(event.key === 'Enter') search()"
+    />
+    <button onclick="search()">Search</button>
+  </div>
+
+  <div id="loading" class="loading" style="display: none;">Searching...</div>
+  
+  <div id="results"></div>
+</div>
+
+<script>
+async function search() {
+  const query = document.getElementById("query").value.trim();
+  
+  if (!query) {
+    alert("Please enter a search query");
+    return;
+  }
+
+  const resultsDiv = document.getElementById("results");
+  const loadingDiv = document.getElementById("loading");
+  
+  resultsDiv.innerHTML = "";
+  loadingDiv.style.display = "block";
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8080/search?query=${encodeURIComponent(query)}&k=50`);
+    const data = await response.json();
+    
+    loadingDiv.style.display = "none";
+
+    if (data.length === 0) {
+      resultsDiv.innerHTML = '<div class="no-results">No results found. Try different search terms.</div>';
+      return;
+    }
+
+    resultsDiv.innerHTML = `<div class="results-count">${data.length} results found</div>`;
+    
+    data.forEach((item, index) => {
+      const resultItem = document.createElement("div");
+      resultItem.className = "result-item";
+      resultItem.innerHTML = `
+        <div class="result-header">
+          <span class="result-number">${index + 1}</span>
+          <div class="result-title">${item.title}</div>
+          <span class="result-score">Score: ${item.score}</span>
+        </div>
+      `;
+      resultsDiv.appendChild(resultItem);
+    });
+  } catch (error) {
+    loadingDiv.style.display = "none";
+    resultsDiv.innerHTML = '<div class="error">Error: Could not connect to search service. Make sure the API is running on port 8000.</div>';
+    console.error("Search error:", error);
+  }
+}
+</script>
+
+</body>
+</html>

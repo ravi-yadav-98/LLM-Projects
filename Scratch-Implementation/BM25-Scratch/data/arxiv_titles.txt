@@ -1,0 +1,200 @@
+Multilingual Hidden Prompt Injection Attacks on LLM-Based Academic Reviewing
+Web World Models
+Nested Browser-Use Learning for Agentic Information Seeking
+AI tutoring can safely and effectively support students: An exploratory RCT in UK classrooms
+BOAD: Discovering Hierarchical Software Engineering Agents via Bandit Optimization
+Regret-Based Federated Causal Discovery with Unknown Interventions
+Physics-Informed Neural Networks for Device and Circuit Modeling: A Case Study of NeuroSPICE
+Le Cam Distortion: A Decision-Theoretic Framework for Robust Transfer Learning
+Divergent-Convergent Thinking in Large Language Models for Creative Problem Generation
+RxnBench: A Multimodal Benchmark for Evaluating Large Language Models on Chemical Reaction Understanding from Scientific Literature
+VL-RouterBench: A Benchmark for Vision-Language Model Routing
+Toward Trustworthy Agentic AI: A Multimodal Framework for Preventing Prompt Injection Attacks
+Lie to Me: Knowledge Graphs for Robust Hallucination Self-Detection in LLMs
+PathFound: An Agentic Multimodal Model Activating Evidence-seeking Pathological Diagnosis
+Act2Goal: From World Model To General Goal-conditioned Policy
+AnyMS: Bottom-up Attention Decoupling for Layout-guided and Training-free Multi-subject Customization
+Alpha-R1: Alpha Screening with LLM Reasoning via Reinforcement Learning
+UniHetero: Could Generation Enhance Understanding for Vision-Language-Model at Large Data Scale?
+Why AI Safety Requires Uncertainty, Incomplete Preferences, and Non-Archimedean Utilities
+Joint Link Adaptation and Device Scheduling Approach for URLLC Industrial IoT Network: A DRL-based Method with Bayesian Optimization
+The Gaining Paths to Investment Success: Information-Driven LLM Graph Reasoning for Venture Capital Prediction
+ML Compass: Navigating Capability, Cost, and Compliance Trade-offs in AI Model Deployment
+FRoD: Full-Rank Efficient Fine-Tuning with Rotational Degrees for Fast Convergence
+Theory of Mind for Explainable Human-Robot Interaction
+Agentic AI for Autonomous Defense in Software Supply Chain Security: Beyond Provenance to Vulnerability Mitigation
+Semantic Tree Inference on Text Corpa using a Nested Density Approach together with Large Language Model Embeddings
+HY-Motion 1.0: Scaling Flow Matching Models for Text-To-Motion Generation
+Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance
+Replay Failures as Successes: Sample-Efficient Reinforcement Learning for Instruction Following
+CoFi-Dec: Hallucination-Resistant Decoding via Coarse-to-Fine Generative Feedback in Large Vision-Language Models
+Fuzzy-Logic and Deep Learning for Environmental Condition-Aware Road Surface Classification
+Mobile-Efficient Speech Emotion Recognition Using DistilHuBERT: A Cross-Corpus Validation Study
+AKG kernel Agent: A Multi-Agent Framework for Cross-Platform Kernel Synthesis
+The World Is Bigger! A Computationally-Embedded Perspective on the Big World Hypothesis
+MindWatcher: Toward Smarter Multimodal Tool-Integrated Reasoning
+Directly Constructing Low-Dimensional Solution Subspaces in Deep Neural Networks
+Theoretical Foundations of Scaling Law in Familial Models
+PINNs for Electromagnetic Wave Propagation
+Securing the AI Supply Chain: What Can We Learn From Developer-Reported Security Issues and Solutions of AI Projects?
+A unified framework for detecting point and collective anomalies in operating system logs via collaborative transformers
+SoulX-LiveTalk Technical Report
+Post-Training Quantization of OpenPangu Models for Efficient Deployment on Atlas A2
+AGRO-SQL: Agentic Group-Relative Optimization with High-Fidelity Data Synthesis
+ECG-RAMBA: Zero-Shot ECG Generalization by Morphology-Rhythm Disentanglement and Long-Range Modeling
+AI Meets Brain: Memory Systems from Cognitive Neuroscience to Autonomous Agents
+The Law of Multi-Model Collaboration: Scaling Limits of Model Ensembling for Large Language Models
+CubeBench: Diagnosing Interactive, Long-Horizon Spatial Reasoning Under Partial Observations
+On Conformant Planning and Model-Checking of $\exists^*\forall^*$ Hyperproperties
+Explainable Neural Inverse Kinematics for Obstacle-Aware Robotic Manipulation: A Comparative Analysis of IKNet Variants
+Splitwise: Collaborative Edge-Cloud Inference for LLMs via Lyapunov-Assisted DRL
+MedGemma vs GPT-4: Open-Source and Proprietary Zero-shot Medical Disease Classification from Images
+Agentic Physical AI toward a Domain-Specific Foundation Model for Nuclear Reactor Control
+Interpretable Safety Alignment via SAE-Constructed Low-Rank Subspace Adaptation
+ViLaCD-R1: A Vision-Language Framework for Semantic Change Detection in Remote Sensing
+KernelEvolve: Scaling Agentic Kernel Coding for Heterogeneous AI Accelerators at Meta
+Physics-Inspired Modeling and Content Adaptive Routing in an Infrared Gas Leak Detection Network
+Anomaly Detection by Effectively Leveraging Synthetic Images
+Holi-DETR: Holistic Fashion Item Detection Leveraging Contextual Information
+TCEval: Using Thermal Comfort to Assess Cognitive and Perceptual Abilities of AI
+Scoring, Reasoning, and Selecting the Best! Ensembling Large Language Models via a Peer-Review Process
+Exploring Syn-to-Real Domain Adaptation for Military Target Detection
+Not too long do read: Evaluating LLM-generated extreme scientific summaries
+ForCM: Forest Cover Mapping from Multispectral Sentinel-2 Image by Integrating Deep Learning with Object-Based Image Analysis
+EIR: Enhanced Image Representations for Medical Report Generation
+From Model Choice to Model Belief: Establishing a New Measure for LLM-Based Research
+EquaCode: A Multi-Strategy Jailbreak Approach for Large Language Models via Equation Solving and Code Completion
+SPIRAL: Symbolic LLM Planning via Grounded and Reflective Search
+Why We Need a New Framework for Emotional Intelligence in AI
+Constraint programming model and biased random-key genetic algorithm for the single-machine coupled task scheduling problem with exact delays to minimize the makespan
+Reservoir Computing inspired Matrix Multiplication-free Language Model
+An Inference-Based Architecture for Intent and Affordance Saturation in Decision-Making
+PathoSyn: Imaging-Pathology MRI Synthesis via Disentangled Deviation Diffusion
+It's a TRAP! Task-Redirecting Agent Persuasion Benchmark for Web Agents
+InSPO: Unlocking Intrinsic Self-Reflection for LLM Preference Optimization
+How Much Data Is Enough? Uniform Convergence Bounds for Generative & Vision-Language Models under Low-Dimensional Structure
+A Note on Hybrid Online Reinforcement and Imitation Learning for LLMs: Formulations and Algorithms
+Benchmark Success, Clinical Failure: When Reinforcement Learning Optimizes for Benchmarks, Not Patients
+MedSAM-based lung masking for multi-label chest X-ray classification
+Taming the Tail: Stable LLM Reinforcement Learning via Dynamic Vocabulary Pruning
+Deep Learning for Art Market Valuation
+Multimodal Functional Maximum Correlation for Emotion Recognition
+Trust Region Masking for Long-Horizon LLM Reinforcement Learning
+The Reward Model Selection Crisis in Personalized Alignment
+Problems With Large Language Models for Learner Modelling: Why LLMs Alone Fall Short for Responsible Tutoring in K--12 Education
+Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization
+Viability and Performance of a Private LLM Server for SMBs: A Benchmark Analysis of Qwen3-30B on Consumer-Grade Hardware
+An Architecture-Led Hybrid Report on Body Language Detection Project
+LENS: LLM-Enabled Narrative Synthesis for Mental Health by Aligning Multimodal Sensing with Language Models
+OpenGround: Active Cognition-based Reasoning for Open-World 3D Visual Grounding
+JADAI: Jointly Amortizing Adaptive Design and Bayesian Inference
+APO: Alpha-Divergence Preference Optimization
+Heterogeneity in Multi-Agent Reinforcement Learning
+Multimodal Fact-Checking: An Agent-based Approach
+Geometric Structural Knowledge Graph Foundation Model
+Sat-EnQ: Satisficing Ensembles of Weak Q-Learners for Reliable and Compute-Efficient Reinforcement Learning
+A Neural Network-Based Real-time Casing Collar Recognition System for Downhole Instruments
+HiSciBench: A Hierarchical Multi-disciplinary Benchmark for Scientific Intelligence from Reading to Discovery
+SAMP-HDRL: Segmented Allocation with Momentum-Adjusted Utility for Multi-agent Portfolio Management via Hierarchical Deep Reinforcement Learning
+DECEPTICON: How Dark Patterns Manipulate Web Agents
+Agentic AI for Cyber Resilience: A New Security Paradigm and Its System-Theoretic Foundations
+SwinTF3D: A Lightweight Multimodal Fusion Approach for Text-Guided 3D Medical Image Segmentation
+Reinforcement Networks: novel framework for collaborative Multi-Agent Reinforcement Learning tasks
+The body is not there to compute: Comment on "Informational embodiment: Computational role of information structure in codes and robots" by Pitti et al
+AutoForge: Automated Environment Synthesis for Agentic Reinforcement Learning
+FasterPy: An LLM-based Code Execution Efficiency Optimization Framework
+EgoReAct: Egocentric Video-Driven 3D Human Reaction Generation
+MoR: Mixture Of Representations For Mixed-Precision Training
+CNSight: Evaluation of Clinical Note Segmentation Tools
+Reach-Avoid Differential game with Reachability Analysis for UAVs: A decomposition approach
+SNM-Net: A Universal Framework for Robust Open-Set Gas Recognition via Spherical Normalization and Mahalanobis Distance
+Adapting, Fast and Slow: Transportable Circuits for Few-Shot Learning
+GRExplainer: A Universal Explanation Method for Temporal Graph Neural Networks
+Next Best View Selections for Semantic and Dynamic 3D Gaussian Splatting
+Understanding the Mechanisms of Fast Hyperparameter Transfer
+Active Constraint Learning in High Dimensions from Demonstrations
+Robust LLM-based Column Type Annotation via Prompt Augmentation with LoRA Tuning
+Harnessing Large Language Models for Biomedical Named Entity Recognition
+FoldAct: Efficient and Stable Context Folding for Long-Horizon Search Agents
+Memento-II: Learning by Stateful Reflective Memory
+GHaLIB: A Multilingual Framework for Hope Speech Detection in Low-Resource Languages
+Learning with the $p$-adics
+Conformal Prediction Sets for Next-Token Prediction in Large Language Models: Balancing Coverage Guarantees with Set Efficiency
+TravelBench: A Real-World Benchmark for Multi-Turn and Tool-Augmented Travel Planning
+Fragile Knowledge, Robust Instruction-Following: The Width Pruning Dichotomy in Llama-3.2
+Unleashing Foundation Vision Models: Adaptive Transfer for Diverse Data-Limited Scientific Domains
+Investigating Deep Learning Models for Ejection Fraction Estimation from Echocardiography Videos
+Scaling Unverifiable Rewards: A Case Study on Visual Insights
+DICE: Discrete Interpretable Comparative Evaluation with Probabilistic Scoring for Retrieval-Augmented Generation
+The Wisdom of Deliberating AI Crowds: Does Deliberation Improve LLM-Based Forecasting?
+Chord Recognition with Deep Learning
+LLM Agents as VC investors: Predicting Startup Success via RolePlay-Based Collective Simulation
+Learning Multi-Modal Mobility Dynamics for Generalized Next Location Recommendation
+Tyee: A Unified, Modular, and Fully-Integrated Configurable Toolkit for Intelligent Physiological Health Care
+SANet: A Semantic-aware Agentic AI Networking Framework for Cross-layer Optimization in 6G
+Lessons from Neuroscience for AI: How integrating Actions, Compositional Structure and Episodic Memory could enable Safe, Interpretable and Human-Like AI
+Geometry-Aware Optimization for Respiratory Sound Classification: Enhancing Sensitivity with SAM-Optimized Audio Spectrogram Transformers
+Learning When Not to Attend Globally
+RollArt: Scaling Agentic RL Training via Disaggregated Infrastructure
+TimePerceiver: An Encoder-Decoder Framework for Generalized Time-Series Forecasting
+Self-Rewarded Multimodal Coherent Reasoning Across Diverse Visual Domains
+CoAgent: Collaborative Planning and Consistency Agent for Coherent Video Generation
+Multi-AI Agent Framework Reveals the "Oxide Gatekeeper" in Aluminum Nanoparticle Oxidation
+Towards Reliable Evaluation of Adversarial Robustness for Spiking Neural Networks
+Predicting LLM Correctness in Prosthodontics Using Metadata and Hallucination Signals
+Hierarchical Pedagogical Oversight: A Multi-Agent Adversarial Framework for Reliable AI Tutoring
+Role-Based Fault Tolerance System for LLM RL Post-Training
+ManchuTTS: Towards High-Quality Manchu Speech Synthesis via Flow Matching and Hierarchical Text Representation
+SPECTRE: Spectral Pre-training Embeddings with Cylindrical Temporal Rotary Position Encoding for Fine-Grained sEMG-Based Movement Decoding
+Gradient Dynamics of Attention: How Cross-Entropy Sculpts Bayesian Manifolds
+The Bayesian Geometry of Transformer Attention
+DarkPatterns-LLM: A Multi-Layer Benchmark for Detecting Manipulative and Harmful AI Behavior
+AMBIT: Augmenting Mobility Baselines with Interpretable Trees
+Towards Robust Optical-SAR Object Detection under Missing Modalities: A Dynamic Quality-Aware Fusion Framework
+HiFi-RAG: Hierarchical Content Filtering and Two-Pass Generation for Open-Domain RAG
+SuperiorGAT: Graph Attention Networks for Sparse LiDAR Point Cloud Reconstruction in Autonomous Systems
+Monadic Context Engineering
+FluenceFormer: Transformer-Driven Multi-Beam Fluence Map Regression for Radiotherapy Planning
+Bright 4B: Scaling Hyperspherical Learning for Segmentation in 3D Brightfield Microscopy
+Nightjar: Dynamic Adaptive Speculative Decoding for Large Language Models Serving
+Emergence of Human to Robot Transfer in Vision-Language-Action Models
+A Unified AI, Embedded, Simulation, and Mechanical Design Approach to an Autonomous Delivery Robot
+Efficient Multi-Model Orchestration for Self-Hosted Large Language Models
+Space AI: Leveraging Artificial Intelligence for Space to Improve Life on Earth
+Lightweight Inference-Time Personalization for Frozen Knowledge Graph Embeddings
+HalluMat: Detecting Hallucinations in LLM-Generated Materials Science Content Through Multi-Stage Verification
+BLISS: Bandit Layer Importance Sampling Strategy for Efficient Training of Graph Neural Networks
+AI-Generated Code Is Not Reproducible (Yet): An Empirical Study of Dependency Gaps in LLM-Based Coding Agents
+LLM-Guided Exemplar Selection for Few-Shot Wearable-Sensor Human Activity Recognition
+Completed Hyperparameter Transfer across Modules, Width, Depth, Batch and Duration
+Towards Efficient Post-Training via Fourier-Driven Adapter Architectures
+Self-Evaluation Unlocks Any-Step Text-to-Image Generation
+Subgoaling Relaxation-based Heuristics for Numeric Planning with Infinite Actions
+Cost-Aware Text-to-SQL: An Empirical Study of Cloud Compute Costs for LLM-Generated Queries
+VULCAN: Tool-Augmented Multi Agents for Iterative 3D Object Arrangement
+Human-like visual computing advances explainability and few-shot learning in deep neural networks for complex physiological data
+Agentic Structured Graph Traversal for Root Cause Analysis of Code-related Incidents in Cloud Applications
+The Effectiveness of Approximate Regularized Replay for Efficient Supervised Fine-Tuning of Large Language Models
+Agent2World: Learning to Generate Symbolic World Models via Adaptive Multi-Agent Feedback
+Pruning as a Game: Equilibrium-Driven Sparsification of Neural Networks
+A2P-Vis: an Analyzer-to-Presenter Agentic Pipeline for Visual Insights Generation and Reporting
+Introducing TrGLUE and SentiTurca: A Comprehensive Benchmark for Turkish General Language Understanding and Sentiment Analysis
+Feature Learning with Multi-Stage Vision Transformers on Inter-Modality HER2 Status Scoring and Tumor Classification on Whole Slides
+SciEvalKit: An Open-source Evaluation Toolkit for Scientific General Intelligence
+Unifying Learning Dynamics and Generalization in Transformers Scaling Law
+The Multi-View Paradigm Shift in MRI Radiomics: Predicting MGMT Methylation in Glioblastoma
+StreamAvatar: Streaming Diffusion Models for Real-Time Interactive Human Avatars
+Expert System for Bitcoin Forecasting: Integrating Global Liquidity via TimeXer Transformers
+SpotEdit: Selective Region Editing in Diffusion Transformers
+SmartSnap: Proactive Evidence Seeking for Self-Verifying Agents
+From In Silico to In Vitro: Evaluating Molecule Generative Models for Hit Generation
+LibContinual: A Comprehensive Library towards Realistic Continual Learning
+Meta-Learning-Based Handover Management in NextG O-RAN
+LongFly: Long-Horizon UAV Vision-and-Language Navigation with Spatiotemporal Context Integration
+LangPrecip: Language-Aware Multimodal Precipitation Nowcasting
+VideoZoomer: Reinforcement-Learned Temporal Focusing for Long Video Reasoning
+LVLM-Aided Alignment of Task-Specific Vision Models
+Unsupervised Anomaly Detection in Brain MRI via Disentangled Anatomy Learning
+Semiparametric Preference Optimization: Your Language Model is Secretly a Single-Index Model
+SpatialBench: Can Agents Analyze Real-World Spatial Biology Data?
+LLMBoost: Make Large Language Models Stronger with Boosting
