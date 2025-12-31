@@ -40,8 +40,8 @@ BM25(D, Q) = Σ IDF(qi) × [(f(qi, D) × (k1 + 1)) / (f(qi, D) + k1 × (1 - b + 
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
-cd BM25-SCRATCH
+git clone https://github.com/ravi-yadav-98/LLM-Projects.git
+cd Scratch-Implementation/BM25-SCRATCH
 ```
 
 2. **Install dependencies**
