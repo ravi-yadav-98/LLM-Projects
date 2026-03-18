@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokViz - Token Generation Visualizer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .tab {
+      padding: 12px 24px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: #666;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    .tab.active {
+      color: #4a9eff;
+      border-bottom-color: #4a9eff;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .input-section {
+      margin-bottom: 24px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #4a9eff;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      background: #4a9eff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #3a8eef;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .token-count {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .token-count input {
+      width: 60px;
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .model-select {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .model-select select {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .output-section {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #eee;
+    }
+
+    .output-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .token-container {
+      line-height: 1.8;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 8px;
+      min-height: 60px;
+    }
+
+    .token {
+      display: inline-block;
+      padding: 3px 6px;
+      margin: 1px;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.1s, box-shadow 0.1s;
+      white-space: pre;
+    }
+
+    .token.prompt {
+      background: #e3f2fd;
+      color: #1565c0;
+      cursor: default;
+    }
+
+    .token.generated {
+      background: #4a4a4a;
+      color: white;
+      font-weight: 500;
+    }
+
+    .token.generated:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      background: #5a5a5a;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2a2a2a;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      min-width: 220px;
+    }
+
+    .tooltip::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #2a2a2a;
+    }
+
+    .token.generated:hover .tooltip {
+      display: block;
+    }
+
+    .tooltip-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #444;
+      font-size: 11px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tooltip-col {
+      text-align: left;
+    }
+
+    .tooltip-col:last-child {
+      text-align: right;
+    }
+
+    .tooltip-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 4px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .tooltip-item.selected {
+      font-weight: 700;
+      color: #4ade80;
+    }
+
+    .tooltip-token {
+      text-align: left;
+    }
+
+    .tooltip-prob {
+      color: #aaa;
+      text-align: right;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #4a9eff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    .legend-box.prompt {
+      background: #e3f2fd;
+      border: 1px solid #1565c0;
+    }
+
+    .legend-box.generated {
+      background: #4a4a4a;
+    }
+
+    /* Tab 2: Chart View */
+    .chart-container {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .generation-output {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .probability-chart {
+      flex: 1;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 400px;
+    }
+
+    .chart-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .bar-item {
+      margin-bottom: 12px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .bar-token {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .bar-prob {
+      color: #666;
+    }
+
+    .bar-bg {
+      background: #e0e0e0;
+      height: 24px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      background: linear-gradient(90deg, #4a9eff, #357abd);
+      height: 100%;
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .bar-fill.selected {
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+    }
+
+    .no-data {
+      text-align: center;
+      color: #999;
+      padding: 60px 20px;
+      font-size: 14px;
+    }
+
+    /* Tab 3: Temperature Control */
+    .temperature-section {
+      margin-top: 24px;
+    }
+
+    .temp-control {
+      background: #f9f9f9;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .temp-slider-container {
+      margin: 20px 0;
+    }
+
+    .temp-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .temp-value {
+      font-weight: 700;
+      font-size: 24px;
+      color: #4a9eff;
+    }
+
+    .temp-slider {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #ddd;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .temp-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      background: #4a9eff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .temp-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      background: #4a9eff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .temp-description {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #999;
+      margin-top: 8px;
+    }
+
+    .temp-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .temp-panel {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .panel-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
+    }
+
+    .temp-token-item {
+      margin-bottom: 10px;
+    }
+
+    .temp-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .temp-bar-bg {
+      background: #e0e0e0;
+      height: 20px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .temp-bar-fill {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .chart-container {
+        flex-direction: column;
+      }
+
+      .temp-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span class="logo">TokViz</span> Token Generation Visualizer</h1>
+    <p class="subtitle">See how language models generate text token by token. Hover over generated tokens to see alternatives.</p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('basic')">Basic View</button>
+      <button class="tab" onclick="switchTab('chart')">Probability Chart</button>
+      <button class="tab" onclick="switchTab('temperature')">Temperature Control</button>
+    </div>
+
+    <!-- Tab 1: Basic View -->
+    <div id="tab-basic" class="tab-content active">
+      <div class="input-section">
+        <textarea id="prompt" placeholder="Enter your prompt here (e.g., 'The quick brown fox')">The future of artificial intelligence</textarea>
+        
+        <div class="controls">
+          <button id="generateBtn" onclick="generate()">Generate</button>
+          <div class="model-select">
+            <label for="modelSelect">Model:</label>
+            <select id="modelSelect">
+              <option value="gpt2">GPT-2 (124M)</option>
+              <option value="distilgpt2">DistilGPT-2 (82M)</option>
+            </select>
+          </div>
+          <div class="token-count">
+            <label for="maxTokens">Max tokens:</label>
+            <input type="number" id="maxTokens" value="15" min="1" max="50">
+          </div>
+          <div class="token-count">
+            <label for="topK">Top-K:</label>
+            <input type="number" id="topK" value="5" min="1" max="20">
+          </div>
+          <div class="token-count">
+            <label>
+              <input type="checkbox" id="streamMode"> Stream mode
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-section" id="outputSection" style="display: none;">
+        <div class="output-label">Output</div>
+        <div class="token-container" id="output"></div>
+        
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-box prompt"></div>
+            <span>Prompt tokens</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box generated"></div>
+            <span>Generated tokens (hover for alternatives)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Chart View -->
+    <div id="tab-chart" class="tab-content">
+      <div class="input-section">
+        <textarea id="promptChart" placeholder="Enter your prompt here">The future of artificial intelligence</textarea>
+        
+        <div class="controls">
+          <button id="generateChartBtn" onclick="generateChart()">Generate with Chart</button>
+          <div class="model-select">
+            <label for="modelSelectChart">Model:</label>
+            <select id="modelSelectChart">
+              <option value="gpt2">GPT-2 (124M)</option>
+              <option value="distilgpt2">DistilGPT-2 (82M)</option>
+            </select>
+          </div>
+          <div class="token-count">
+            <label for="maxTokensChart">Max tokens:</label>
+            <input type="number" id="maxTokensChart" value="15" min="1" max="50">
+          </div>
+          <div class="token-count">
+            <label for="topKChart">Top-K:</label>
+            <input type="number" id="topKChart" value="5" min="1" max="20">
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container" id="chartContainer" style="display: none;">
+        <div class="generation-output">
+          <div class="output-label">Generated Text</div>
+          <div class="token-container" id="outputChart"></div>
+        </div>
+        <div class="probability-chart">
+          <div class="chart-title">Token Probabilities</div>
+          <div id="chartContent" class="no-data">Generate text to see probability distribution</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Temperature Control -->
+    <div id="tab-temperature" class="tab-content">
+      <div class="input-section">
+        <textarea id="promptTemp" placeholder="Enter your prompt here">The future of artificial intelligence</textarea>
+        
+        <div class="controls">
+          <button id="generateTempBtn" onclick="generateTemperature()">Generate & Compare</button>
+          <div class="model-select">
+            <label for="modelSelectTemp">Model:</label>
+            <select id="modelSelectTemp">
+              <option value="gpt2">GPT-2 (124M)</option>
+              <option value="distilgpt2">DistilGPT-2 (82M)</option>
+            </select>
+          </div>
+          <div class="token-count">
+            <label for="topKTemp">Top-K:</label>
+            <input type="number" id="topKTemp" value="10" min="1" max="20">
+          </div>
+        </div>
+      </div>
+
+      <div class="temperature-section">
+        <div class="temp-control">
+          <div class="temp-label">
+            <span>Temperature</span>
+            <span class="temp-value" id="tempValue">1.0</span>
+          </div>
+          <div class="temp-slider-container">
+            <input type="range" class="temp-slider" id="tempSlider" min="0.1" max="2.0" step="0.1" value="1.0" oninput="updateTemperature()">
+          </div>
+          <div class="temp-description">
+            <span>More Focused (0.1)</span>
+            <span>More Random (2.0)</span>
+          </div>
+        </div>
+
+        <div class="temp-comparison" id="tempComparison" style="display: none;">
+          <div class="temp-panel">
+            <div class="panel-header">Original Distribution (T=1.0)</div>
+            <div id="originalDist"></div>
+          </div>
+          <div class="temp-panel">
+            <div class="panel-header">Adjusted Distribution (T=<span id="adjustedTempLabel">1.0</span>)</div>
+            <div id="adjustedDist"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const grayShades = ['#3a3a3a', '#4a4a4a', '#5a5a5a', '#6a6a6a', '#505050', '#454545', '#555555', '#606060', '#484848', '#525252'];
+    let currentChartData = null;
+    let currentTempData = null;
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      
+      document.getElementById(`tab-${tabName}`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Tab 1: Basic View
+    async function generate() {
+      const prompt = document.getElementById("prompt").value.trim();
+      const maxTokens = parseInt(document.getElementById("maxTokens").value);
+      const topK = parseInt(document.getElementById("topK").value);
+      const streamMode = document.getElementById("streamMode").checked;
+      const modelName = document.getElementById("modelSelect").value;
+      const outputDiv = document.getElementById("output");
+      const outputSection = document.getElementById("outputSection");
+      const generateBtn = document.getElementById("generateBtn");
+
+      if (!prompt) {
+        alert("Please enter a prompt");
+        return;
+      }
+
+      generateBtn.disabled = true;
+      generateBtn.textContent = "Generating...";
+      outputSection.style.display = "block";
+      outputDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Generating tokens...</div>';
+
+      try {
+        const response = await fetch("/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            prompt: prompt,
+            max_tokens: maxTokens,
+            top_k: topK,
+            model_name: modelName,
+            stream: streamMode
+          })
+        });
+
+        if (!response.ok) throw new Error('Generation failed');
+
+        if (streamMode) {
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = '';
+          let promptRendered = false;
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const jsonStr = line.slice(6);
+                if (jsonStr === '[DONE]') continue;
+
+                try {
+                  const data = JSON.parse(jsonStr);
+                  
+                  if (!promptRendered && data.prompt_tokens) {
+                    outputDiv.innerHTML = '';
+                    data.prompt_tokens.forEach(token => {
+                      const tokenSpan = document.createElement("span");
+                      tokenSpan.className = "token prompt";
+                      tokenSpan.textContent = token.replace("Ġ", " ");
+                      outputDiv.appendChild(tokenSpan);
+                    });
+                    promptRendered = true;
+                  }
+
+                  if (data.token) {
+                    const tokenIndex = outputDiv.querySelectorAll('.token.generated').length;
+                    const tokenSpan = document.createElement("span");
+                    tokenSpan.className = "token generated";
+                    tokenSpan.style.background = grayShades[tokenIndex % grayShades.length];
+
+                    const visibleToken = data.token.replace("Ġ", " ");
+                    tokenSpan.textContent = visibleToken;
+
+                    const tooltip = document.createElement("div");
+                    tooltip.className = "tooltip";
+                    tooltip.innerHTML = `
+                      <div class="tooltip-header">
+                        <div class="tooltip-col">Token</div>
+                        <div class="tooltip-col">Probability</div>
+                      </div>
+                    `;
+
+                    data.top_k.forEach((t, i) => {
+                      const itemClass = i === 0 ? 'tooltip-item selected' : 'tooltip-item';
+                      const tokenDisplay = t.token.replace("Ġ", " ").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                      tooltip.innerHTML += `
+                        <div class="${itemClass}">
+                          <span class="tooltip-token">${tokenDisplay}</span>
+                          <span class="tooltip-prob">${t.prob.toFixed(4)}</span>
+                        </div>
+                      `;
+                    });
+
+                    tokenSpan.appendChild(tooltip);
+                    outputDiv.appendChild(tokenSpan);
+                    tokenSpan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                  }
+                } catch (e) {
+                  console.error('Error parsing JSON:', e);
+                }
+              }
+            }
+          }
+        } else {
+          const data = await response.json();
+          outputDiv.innerHTML = '';
+
+          data.prompt_tokens.forEach(token => {
+            const tokenSpan = document.createElement("span");
+            tokenSpan.className = "token prompt";
+            tokenSpan.textContent = token.replace("Ġ", " ");
+            outputDiv.appendChild(tokenSpan);
+          });
+
+          data.generated_tokens.forEach((step, index) => {
+            const tokenSpan = document.createElement("span");
+            tokenSpan.className = "token generated";
+            tokenSpan.style.background = grayShades[index % grayShades.length];
+
+            const visibleToken = step.token.replace("Ġ", " ");
+            tokenSpan.textContent = visibleToken;
+
+            const tooltip = document.createElement("div");
+            tooltip.className = "tooltip";
+            tooltip.innerHTML = `
+              <div class="tooltip-header">
+                <div class="tooltip-col">Token</div>
+                <div class="tooltip-col">Probability</div>
+              </div>
+            `;
+
+            step.top_k.forEach((t, i) => {
+              const itemClass = i === 0 ? 'tooltip-item selected' : 'tooltip-item';
+              const tokenDisplay = t.token.replace("Ġ", " ").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+              tooltip.innerHTML += `
+                <div class="${itemClass}">
+                  <span class="tooltip-token">${tokenDisplay}</span>
+                  <span class="tooltip-prob">${t.prob.toFixed(4)}</span>
+                </div>
+              `;
+            });
+
+            tokenSpan.appendChild(tooltip);
+            outputDiv.appendChild(tokenSpan);
+          });
+        }
+
+      } catch (error) {
+        console.error("Error:", error);
+        outputDiv.innerHTML = '<div style="color: #f44336; padding: 20px;">Error generating text. Please try again.</div>';
+      } finally {
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generate";
+      }
+    }
+
+    // Tab 2: Chart View
+    async function generateChart() {
+      const prompt = document.getElementById("promptChart").value.trim();
+      const maxTokens = parseInt(document.getElementById("maxTokensChart").value);
+      const topK = parseInt(document.getElementById("topKChart").value);
+      const modelName = document.getElementById("modelSelectChart").value;
+      const outputDiv = document.getElementById("outputChart");
+      const chartContent = document.getElementById("chartContent");
+      const chartContainer = document.getElementById("chartContainer");
+      const generateBtn = document.getElementById("generateChartBtn");
+
+      if (!prompt) {
+        alert("Please enter a prompt");
+        return;
+      }
+
+      generateBtn.disabled = true;
+      generateBtn.textContent = "Generating...";
+      chartContainer.style.display = "flex";
+      outputDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Generating...</div>';
+      chartContent.innerHTML = '<div class="no-data">Generating tokens...</div>';
+
+      try {
+        const response = await fetch("/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            prompt: prompt,
+            max_tokens: maxTokens,
+            top_k: topK,
+            model_name: modelName,
+            stream: false
+          })
+        });
+
+        if (!response.ok) throw new Error('Generation failed');
+
+        const data = await response.json();
+        currentChartData = data;
+        
+        outputDiv.innerHTML = '';
+        data.prompt_tokens.forEach(token => {
+          const tokenSpan = document.createElement("span");
+          tokenSpan.className = "token prompt";
+          tokenSpan.textContent = token.replace("Ġ", " ");
+          outputDiv.appendChild(tokenSpan);
+        });
+
+        data.generated_tokens.forEach((step, index) => {
+          const tokenSpan = document.createElement("span");
+          tokenSpan.className = "token generated";
+          tokenSpan.style.background = grayShades[index % grayShades.length];
+          tokenSpan.style.cursor = 'pointer';
+          tokenSpan.textContent = step.token.replace("Ġ", " ");
+          tokenSpan.onclick = () => showChart(step.top_k, step.token);
+          outputDiv.appendChild(tokenSpan);
+        });
+
+        if (data.generated_tokens.length > 0) {
+          showChart(data.generated_tokens[0].top_k, data.generated_tokens[0].token);
+        }
+
+            } catch (error) {
+        console.error("Error:", error);
+        outputDiv.innerHTML =
+          '<div style="color: #f44336; padding: 20px;">Error generating chart. Please try again.</div>';
+        chartContent.innerHTML =
+          '<div class="no-data">Failed to generate probability chart</div>';
+      } finally {
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generate with Chart";
+      }
+    }
+
+    // ==============================
+    // Chart rendering helper
+    // ==============================
+    function showChart(topKData, selectedToken) {
+      const chartContent = document.getElementById("chartContent");
+      chartContent.innerHTML = "";
+
+      topKData.forEach((item, index) => {
+        const barItem = document.createElement("div");
+        barItem.className = "bar-item";
+
+        const label = document.createElement("div");
+        label.className = "bar-label";
+        label.innerHTML = `
+          <span class="bar-token">${item.token.replace("Ġ", " ")}</span>
+          <span class="bar-prob">${item.prob.toFixed(4)}</span>
+        `;
+
+        const barBg = document.createElement("div");
+        barBg.className = "bar-bg";
+
+        const barFill = document.createElement("div");
+        barFill.className = "bar-fill";
+        barFill.style.width = `${(item.prob * 100).toFixed(1)}%`;
+
+        if (index === 0) {
+          barFill.classList.add("selected");
+        }
+
+        barBg.appendChild(barFill);
+        barItem.appendChild(label);
+        barItem.appendChild(barBg);
+        chartContent.appendChild(barItem);
+      });
+    }
+
+    // ==============================
+    // Tab 3: Temperature helpers
+    // ==============================
+    function updateTemperature() {
+      const slider = document.getElementById("tempSlider");
+      const value = slider.value;
+      document.getElementById("tempValue").textContent = value;
+      document.getElementById("adjustedTempLabel").textContent = value;
+    }
+
+    async function generateTemperature() {
+      alert("Temperature comparison logic not wired yet (backend support needed).");
+    }
+  </script>
+</body>
+</html>
